@@ -1,8 +1,24 @@
 #!/bin/sh
-# Данный скрипт должен запускать сервис, который будет
-# брать значение LoadAverage и записывать его в файл
-# каждую минуту
+# Standartniy vivod komandi upload, nuzhno tri poslednih chisla.
+# 18:44:59 up 10 min,  1 user,  load average: 0.09, 0.35, 0.35
 
-uptime >> 1_st.log
+LA=$(uptime)
+T1=$(echo "$LA" |sed 's/:/ /g' | awk '{print $1}')
+T2=$(echo "$LA" |sed 's/:/ /g' | awk '{print $2}')
+T3=$(echo "$LA" |sed 's/:/ /g' | awk '{print $3}')
+P1=$(echo "$LA" |sed 's/:/ /g' | awk '{print $11}')
+P2=$(echo "$LA" |sed 's/:/ /g' | awk '{print $12}')
+P3=$(echo "$LA" |sed 's/:/ /g' | awk '{print $13}')
+echo "$LA"
+echo "[ $T1 : $T2 : $T3 ] 1min LA: $P1 , 5min LA: $P2 , 15min LA: $P3" >> 1_st.log
+echo "LoadAverage for 1min: $P1"
+echo "LoadAverage for 1min: $P2"
+echo "LoadAverage for 1min: $P3"
 
+#a=$(echo $LA | tr ":" "\n")
+#for addr in $a
+# do
+#  echo $addr
+#done
 
+#uptime >> 1_st.log
