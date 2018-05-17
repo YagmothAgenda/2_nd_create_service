@@ -2,23 +2,7 @@
 # Standartniy vivod komandi upload, nuzhno tri poslednih chisla.
 # 18:44:59 up 10 min,  1 user,  load average: 0.09, 0.35, 0.35
 
-LA=$(uptime)
-T1=$(echo "$LA" |sed 's/:/ /g' | awk '{print $1}')
-T2=$(echo "$LA" |sed 's/:/ /g' | awk '{print $2}')
-T3=$(echo "$LA" |sed 's/:/ /g' | awk '{print $3}')
-P1=$(echo "$LA" |sed 's/:/ /g' | awk '{print $11}')
-P2=$(echo "$LA" |sed 's/:/ /g' | awk '{print $12}')
-P3=$(echo "$LA" |sed 's/:/ /g' | awk '{print $13}')
-echo "$LA"
-echo "[ $T1 : $T2 : $T3 ] 1min LA: $P1 , 5min LA: $P2 , 15min LA: $P3" >> 1_st.log
-echo "LoadAverage for 1min: $P1"
-echo "LoadAverage for 1min: $P2"
-echo "LoadAverage for 1min: $P3"
-
-#a=$(echo $LA | tr ":" "\n")
-#for addr in $a
-# do
-#  echo $addr
-#done
-
-#uptime >> 1_st.log
+echo $(uptime)
+LA=$(echo $(uptime) | sed 's/ / /g' | awk '{print "[1min LA:" $8 "] [5min LA:" $9 "] [15min LA:" $10 "]" }')
+echo $(date) $LA
+echo $(date) $LA >> 1_st.log
