@@ -2,7 +2,11 @@
 # Standartniy vivod komandi upload, nuzhno tri poslednih chisla.
 # 18:44:59 up 10 min,  1 user,  load average: 0.09, 0.35, 0.35
 
-echo $(uptime)
-LA=$(echo $(uptime) | sed 's/ / /g' | awk '{print "[1min LA:" $8 "] [5min LA:" $9 "] [15min LA:" $10 "]" }')
-echo $(date) $LA
-echo $(date) $LA >> 1_st.log
+while (true)
+ do
+  echo $(uptime);
+  LA=$(echo $(uptime) | sed 's/ / /g' | awk '{print "[1min LA:" $8 "] [5min LA:" $9 "] [15min LA:" $10 "]" }');
+  echo $(date) $LA;
+  echo $(date) $LA >> 1_st.log;
+  sleep 60;
+ done;
