@@ -1,16 +1,13 @@
-#!/bin/sh
+[Unit]
+Description=My New Service Load Average
 
-### BEGIN INIT INFO
-# Provides:          yskotov
-# Required-Start:    $all
-# Required-Stop:     $all
-# Default-Start:     2 3 4 5
-# Default-Stop:      0 1 6
-# Short-Description: Write LA in file every 1 min
-# Description:       Write LA information in file every 1 min
-### END INIT INFO
+[Service]
+Type=forking
+SuccessExitStatus=1
+BusName=org.freedesktop.thermald
+ExecStart=/home/yskotov/1_st_script/2ND/2_part
+ExecStop=/home/yskotov/1_st_script/2ND/2_part
+ExecReload=/home/yskotov/1_st_script/2ND/2_part
 
-# Здесь должен находиться основной код.
-# Этот код должен обрабатывать команды start, stop и restart, переданные скрипту.
-# Использование других команд не возбраняется.
-# Для наглядного примера можно посмотреть любой файл из /etc/init.d/
+[Install]
+WantedBy=multi-user.target
